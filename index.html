@@ -1,832 +1,336 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" class="dark scroll-smooth">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Firoj — Senior Software Engineer</title>
-<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-<link rel="manifest" href="./site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Work+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firoj — Senior Software Engineer</title>
 
-  /* ── LIGHT THEME — clean white-gray bg, near-black text (Image 2) ── */
-  :root,
-  [data-theme="light"] {
-    --bg:       #f4f4f4;
-    --bg2:      #ebebeb;
-    --bg3:      #e0e0e0;
-    --text:     #050505;
-    --muted:    #171616;
-    --subtle:   #c8c8c8;
-    --accent:   #050505;
-    --accent2:  #168949;
-    --line:     #d4d4d4;
-    --nav-bg:   rgba(244,244,244,0.92);
-    --btn-hover-bg: #0e0e0e;
-    --btn-hover-text: #f4f4f4;
-    --link-hover: #2a6fd4;
-  }
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
 
-  /* ── DARK THEME — near-black bg, bright white text (Image 1) ── */
-  [data-theme="dark"] {
-    --bg:       #1c1c1c;
-    --bg2:      #292929;
-    --bg3:      #252525;
-    --text:     #f8f8f8;
-    --muted:    #c5c5c5;
-    --subtle:   #383838;
-    --accent:   #f0f0f0;
-    --accent2:  #6097ea;
-    --line:     #2e2e2e;
-    --nav-bg:   rgba(18,18,18,0.92);
-    --btn-hover-bg: #f0f0f0;
-    --btn-hover-text: #121212;
-    --link-hover: #6aad8a;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-  html { scroll-behavior: smooth; }
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 20px;
-    line-height: 1.5;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    transition: background 0.3s, color 0.3s;
-  }
-
-  ::selection { background: var(--accent2); color: #fff; }
-
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  /* ── WORK SANS for descriptions ── */
-  .work-sans {
-    font-family: 'Work Sans', sans-serif;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: var(--nav-bg);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-    transition: background 0.3s, border-color 0.3s;
-  }
-  nav .wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 54px;
-  }
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-  }
-  .nav-logo:hover { color: var(--accent2); }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.8rem;
-  }
-  .nav-links {
-    display: flex;
-    gap: 1.8rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 11px;
-    font-family: 'DM Mono', monospace;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    position: relative;
-    padding-bottom: 2px;
-  }
-  /* link hover — underline slide-in effect */
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: -1px;
-    width: 0; height: 1px;
-    background: var(--text);
-    transition: width 0.25s ease;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { width: 100%; }
-
-  /* ── THEME TOGGLE ── */
-  .theme-btn {
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-    white-space: nowrap;
-  }
-  .theme-btn:hover { border-color: var(--accent2); color: var(--accent2); }
-  .theme-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
-  .icon-sun { display: none; }
-  .icon-moon { display: block; }
-  [data-theme="dark"] .icon-sun  { display: block; }
-  [data-theme="dark"] .icon-moon { display: none; }
-
-  .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    color: var(--muted);
-  }
-  .nav-toggle svg { width: 22px; height: 22px; }
-
-  /* ── SECTIONS ── */
-  section {
-    padding: 5.5rem 0;
-    border-bottom: 1px solid var(--line);
-    transition: border-color 0.3s;
-  }
-  section:last-of-type { border-bottom: none; }
-
-  /* ── HERO ── */
-  #hero { padding-top: 9rem; padding-bottom: 5rem; }
-
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2.5rem;
-    align-items: center;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 22px; height: 1px;
-    background: var(--accent2);
-    flex-shrink: 0;
-  }
-
-  h1 {
-    font-size: clamp(2rem, 5.5vw, 3.2rem);
-    font-weight: 300;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.25rem;
-    color: var(--text);
-  }
-  h1 em { color: var(--accent2); font-style: normal; }
-
-  /* hero + about descriptions → Work Sans */
-  .hero-desc {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--muted);
-    line-height: 1.85;
-    margin-bottom: 2rem;
-    max-width: 440px;
-  }
-  .hero-desc strong { color: var(--text); font-weight: 400; }
-
-  .hero-links {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  /* ── AVATARS ── */
-  .avatar-hero {
-    width: 240px; height: 240px;
-    border-radius: 50%;
-    background: var(--bg3);
-    border: 2px solid var(--line);
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.3s;
-  }
-  .avatar-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .avatar-hero .initials {
-    font-family: 'DM Mono', monospace;
-    font-size: 28px; font-weight: 500;
-    color: var(--muted); user-select: none;
-  }
-
-  .avatar-about {
-    width: 88px; height: 88px;
-    border-radius: 12px;
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.3s;
-  }
-  .avatar-about img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .avatar-about .initials {
-    font-family: 'DM Mono', monospace;
-    font-size: 22px; font-weight: 500;
-    color: var(--muted); user-select: none;
-  }
-
-  /* ── BUTTONS ── */
-  .btn {
-    font-family: 'DM Mono', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.6rem 1.1rem;
-    border: 1px solid var(--subtle);
-    border-radius: 2px;
-    text-decoration: none;
-    color: var(--muted);
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: transparent;
-    cursor: pointer;
-  }
-  .btn:hover { border-color: var(--accent2); color: var(--accent2); }
-  .btn.primary { border-color: var(--text); color: var(--text); }
-  .btn.primary:hover { background: var(--btn-hover-bg); color: var(--btn-hover-text); border-color: var(--btn-hover-bg); }
-  .btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-
-  /* ── SECTION LABEL ── */
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1; height: 1px;
-    background: var(--line);
-  }
-
-  /* ── ABOUT ── */
-  .about-body {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  /* about text → Work Sans */
-  .about-text p {
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 300;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.85;
-    margin-bottom: 1rem;
-  }
-  .about-text p:last-child { margin-bottom: 0; }
-  .about-text p strong { color: var(--text); font-weight: 500; }
-
-  .about-meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 2rem;
-    margin-top: 1.75rem;
-    border-top: 1px solid var(--line);
-    padding-top: 1.25rem;
-  }
-  .meta-item {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-  .meta-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .meta-value {
-    font-size: 13.5px;
-    color: var(--text);
-    font-weight: 300;
-  }
-
-  /* ── STACK ── */
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .stack-item {
-    background: var(--bg);
-    padding: 1.15rem 1.15rem 0.9rem;
-    transition: background 0.15s;
-  }
-  .stack-item:hover { background: var(--bg2); }
-  .stack-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-    font-weight: 400;
-  }
-  .stack-years {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--accent2);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .stack-dot {
-    display: inline-block;
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--accent2);
-    flex-shrink: 0;
-  }
-
-  /* ── CONTACT ── */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    margin-bottom: 2rem;
-    transition: background 0.3s, border-color 0.3s;
-  }
-
-  /* contact links — hover differentiation */
-  .contact-item {
-    background: var(--bg);
-    padding: 1.15rem 1.15rem 0.9rem;
-    text-decoration: none;
-    transition: background 0.2s;
-    display: block;
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-item::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 0;
-    background: var(--accent2);
-    opacity: 0.08;
-    transition: width 0.25s ease;
-  }
-  .contact-item:hover { background: var(--bg2); }
-  .contact-item:hover::before { width: 100%; }
-  .contact-item:hover .contact-handle { color: var(--link-hover); }
-
-  .contact-platform {
-    font-family: 'DM Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.35rem;
-  }
-  .contact-handle {
-    font-size: 13.5px;
-    color: var(--accent2);
-    font-family: 'DM Mono', monospace;
-    transition: color 0.2s;
-  }
-  .contact-note {
-    font-size: 12.5px;
-    color: var(--muted);
-    font-style: italic;
-    text-align: center;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 1.75rem 0;
-    border-top: 1px solid var(--line);
-  }
-  footer .wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .footer-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
-  .footer-text em { color: var(--accent2); font-style: normal; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .fade { animation: fadeUp 0.65s ease both; }
-  .fade-1 { animation-delay: 0.05s; }
-  .fade-2 { animation-delay: 0.12s; }
-  .fade-3 { animation-delay: 0.22s; }
-  .fade-4 { animation-delay: 0.34s; }
-  .fade-5 { animation-delay: 0.44s; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .nav-links.open {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 54px; left: 0; right: 0;
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--line);
-      padding: 1rem 1.5rem 1.25rem;
-      gap: 1.1rem;
-    }
-    .nav-toggle { display: block; }
-    .theme-btn span { display: none; }
-    .theme-btn { padding: 5px 7px; }
-
-    .hero-inner { grid-template-columns: 1fr; }
-    .avatar-hero { width: 72px; height: 72px; order: -1; }
-
-    .about-body { grid-template-columns: 1fr; gap: 1.5rem; }
-    .about-meta { grid-template-columns: 1fr; }
-
-    .contact-grid { grid-template-columns: 1fr; }
-    .stack-grid { grid-template-columns: 1fr 1fr; }
-
-    h1 { font-size: 2rem; }
-    section { padding: 4rem 0; }
-    #hero { padding-top: 7.5rem; }
-  }
-
-  @media (max-width: 380px) {
-    .stack-grid { grid-template-columns: 1fr; }
-  }
-</style>
-</head>
-<body>
-
-<!-- ── NAV ── -->
-<nav>
-  <div class="wrap">
-    <a class="nav-logo" href="#hero">firoj.</a>
-    <div class="nav-right">
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <!-- Light / Dark toggle -->
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
-        <!-- Sun icon (shown in dark mode) -->
-        <svg class="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="8" cy="8" r="3"/>
-          <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.42 1.42M11.53 11.53l1.42 1.42M11.53 4.47l1.42-1.42M3.05 12.95l1.42-1.42"/>
-        </svg>
-        <!-- Moon icon (shown in light mode) -->
-        <svg class="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M14 8.5A6 6 0 017.5 2a6 6 0 100 12 6 6 0 006.5-5.5z"/>
-        </svg>
-        <span>Dark</span>
-      </button>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-          <path id="toggleIcon" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- ── HERO ── -->
-<section id="hero">
-  <div class="wrap">
-    <div class="hero-inner">
-      <div>
-        <p class="hero-eyebrow fade fade-1">Based in Pune, India</p>
-        <h1 class="fade fade-2">
-          Hi, I'm <em>Firoj.</em><br />
-          I build robust<br />software systems.
-        </h1>
-        <p class="hero-desc fade fade-3">
-          Senior Software Engineer with <strong id="totalYrs"></strong> of experience designing
-          and scaling backend systems — from microservices on Kubernetes to event-driven
-          pipelines with Kafka and RabbitMQ.
-        </p>
-        <div class="hero-links fade fade-4">
-          <a class="btn primary" href="#contact">
-            Get in touch
-            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M1 7h12M8 3l5 4-5 4"/>
-            </svg>
-          </a>
-          <a class="btn" href="https://www.github.com/firojm57" target="_blank" rel="noopener">
-            GitHub
-            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M7 1C3.686 1 1 3.686 1 7c0 2.654 1.72 4.9 4.107 5.695.3.055.41-.13.41-.29v-1.018c-1.67.363-2.02-.806-2.02-.806-.273-.693-.667-.878-.667-.878-.545-.373.04-.365.04-.365.603.042.92.619.92.619.535.917 1.403.652 1.745.499.055-.388.21-.652.38-.802-1.333-.151-2.734-.666-2.734-2.966 0-.655.234-1.19.619-1.61-.062-.152-.268-.763.059-1.59 0 0 .504-.161 1.65.615A5.74 5.74 0 017 4.752c.51.002 1.023.069 1.502.202 1.145-.776 1.648-.615 1.648-.615.328.827.122 1.438.06 1.59.385.42.618.955.618 1.61 0 2.306-1.404 2.813-2.74 2.96.215.186.407.552.407 1.112v1.647c0 .162.108.348.413.29C11.282 11.898 13 9.653 13 7c0-3.314-2.686-6-6-6z"/>
-            </svg>
-          </a>
-          <a class="btn" href="https://www.linkedin.com/in/firojmujawar" target="_blank" rel="noopener">
-            LinkedIn
-            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="1" y="1" width="12" height="12" rx="2"/>
-              <path d="M4 6v4M4 4.5v.01M6.5 10V8c0-1 .5-2 2-2s1.5 1 1.5 2v2"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="avatar-hero fade fade-5">
-        <img src="./images/firoj-linkedin-pic.jpg" alt="Firoj"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
-        <span class="initials" style="display:none">F</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── ABOUT ── -->
-<section id="about">
-  <div class="wrap">
-    <p class="section-label">About me</p>
-    <div class="about-body">
-      <div>
-        <div class="about-text">
-          <p>
-            I'm a <strong>Senior Software Engineer</strong> with over a decade of experience
-            building scalable backend systems and distributed architectures. I enjoy working
-            at the intersection of engineering rigour and product impact.
-          </p>
-          <p>
-            My core stack is <strong>Java</strong> and <strong>Go</strong> for backend,
-            <strong>Angular</strong> for frontend, and <strong>PostgreSQL</strong> for
-            data — deployed on Kubernetes with event streaming via Kafka.
-          </p>
-          <p>
-            When I'm not shipping code, I'm thinking about entrepreneurship, content creation,
-            and building things that outlast a sprint cycle.
-          </p>
-        </div>
-
-        <div class="about-meta">
-          <div class="meta-item">
-            <span class="meta-label">Experience</span>
-            <span class="meta-value" id="metaYrs">—</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Speciality</span>
-            <span class="meta-value">Backend &amp; Distributed Systems</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Location</span>
-            <span class="meta-value">Pune, India</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Languages</span>
-            <span class="meta-value">Java · Go · TypeScript · SQL</span>
-          </div>
-          <div class="meta-item" style="grid-column: 1 / -1;">
-            <span class="meta-label">Status</span>
-            <span class="meta-value" style="color:var(--accent2);display:flex;align-items:center;gap:6px;">
-              <span class="stack-dot"></span>Open to opportunities / Relocation (Germany)
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── STACK ── -->
-<section id="stack">
-  <div class="wrap">
-    <p class="section-label">Skills &amp; stack</p>
-    <div class="stack-grid">
-      <div class="stack-item" data-since="2016-01">
-        <div class="stack-name">Java</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-since="2018-12">
-        <div class="stack-name">PostgreSQL</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="3 yrs">
-        <div class="stack-name">Angular / TypeScript</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-since="2024-09">
-        <div class="stack-name">Go</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="Production">
-        <div class="stack-name">Kubernetes</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="Production">
-        <div class="stack-name">Docker</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="Production">
-        <div class="stack-name">Apache Kafka</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="Production">
-        <div class="stack-name">RabbitMQ</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="Daily">
-        <div class="stack-name">Git / Bitbucket</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="Daily">
-        <div class="stack-name">IntelliJ / VS Code</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <!-- 2 new skills to fill the grid -->
-      <div class="stack-item" data-label="Production">
-        <div class="stack-name">Spring Boot</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-      <div class="stack-item" data-label="Production">
-        <div class="stack-name">REST / gRPC APIs</div>
-        <div class="stack-years"><span class="stack-dot"></span><span class="yrs-text"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTACT ── -->
-<section id="contact">
-  <div class="wrap">
-    <p class="section-label">Get in touch</p>
-    <div class="contact-grid">
-      <a class="contact-item" href="mailto:firojm57@gmail.com">
-        <p class="contact-platform">Email</p>
-        <p class="contact-handle">firojm57@gmail.com</p>
-      </a>
-      <a class="contact-item" href="https://www.linkedin.com/in/firojmujawar" target="_blank" rel="noopener">
-        <p class="contact-platform">LinkedIn</p>
-        <p class="contact-handle">linkedin.com/in/firojmujawar/</p>
-      </a>
-      <a class="contact-item" href="https://www.github.com/firojm57" target="_blank" rel="noopener">
-        <p class="contact-platform">GitHub</p>
-        <p class="contact-handle">github.com/firojm57</p>
-      </a>
-    </div>
-    <p class="contact-note">I read every message. Usually reply within 48 hours.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <p class="footer-text">© <span id="footerYear"></span> <em>Firoj</em> — All rights reserved.</p>
-    <p class="footer-text">Pune, India</p>
-  </div>
-</footer>
-
-<script>
-  /* ── EXPERIENCE DATES ── */
-  const CAREER_START = new Date('2015-08-01');
-  const now = new Date();
-
-  function yearsSince(date) {
-    return Math.round((now - date) / (1000 * 60 * 60 * 24 * 365.25));
-  }
-  function fmtYrs(n) {
-    if (n <= 0) return '< 1 yr';
-    return n === 1 ? '1 yr' : n + ' yrs';
-  }
-
-  const totalStr = yearsSince(CAREER_START) + ' years';
-  document.getElementById('totalYrs').textContent = totalStr;
-  document.getElementById('metaYrs').textContent  = totalStr;
-  document.getElementById('footerYear').textContent = now.getFullYear();
-
-  document.querySelectorAll('.stack-item').forEach(item => {
-    const span  = item.querySelector('.yrs-text');
-    const since = item.dataset.since;
-    const label = item.dataset.label;
-    if (since) {
-      span.textContent = fmtYrs(yearsSince(new Date(since + '-01')));
-    } else if (label) {
-      span.textContent = label;
-    }
-  });
-
-  /* ── DARK / LIGHT TOGGLE ── */
-  const html     = document.documentElement;
-  const themeBtn = document.getElementById('themeBtn');
-  const themeLabel = themeBtn.querySelector('span');
-
-  const saved = localStorage.getItem('theme') || 'light';
-  html.setAttribute('data-theme', saved);
-  themeLabel.textContent = saved === 'dark' ? 'Light' : 'Dark';
-
-  themeBtn.addEventListener('click', () => {
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    themeLabel.textContent = next === 'dark' ? 'Light' : 'Dark';
-  });
-
-  /* ── MOBILE NAV ── */
-  const toggle   = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  const iconPath = document.getElementById('toggleIcon');
-  const OPEN_D   = 'M6 18L18 6M6 6l12 12';
-  const CLOSE_D  = 'M4 6h16M4 12h16M4 18h16';
-
-  toggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    iconPath.setAttribute('d', open ? OPEN_D : CLOSE_D);
-  });
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      iconPath.setAttribute('d', CLOSE_D);
-    });
-  });
-
-  /* ── SCROLL FADE-IN ── */
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-        obs.unobserve(e.target);
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#00d2d3', // The cyan accent from the image
+              hover: '#00e6e6',
+            },
+            dark: {
+              bg: '#1e252c',     // Deep blue/grey background
+              card: '#273039',
+              text: '#d1d5db',
+              heading: '#ffffff'
+            },
+            light: {
+              bg: '#f8fafc',
+              card: '#ffffff',
+              text: '#475569',
+              heading: '#0f172a'
+            }
+          }
+        }
       }
-    });
-  }, { threshold: 0.08 });
+    }
+  </script>
+</head>
 
-  document.querySelectorAll('.stack-item, .contact-item, .meta-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(10px)';
-    el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
-    obs.observe(el);
-  });
-</script>
+<body
+  class="bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text transition-colors duration-300 antialiased font-sans">
+
+  <nav
+    class="fixed w-full top-0 z-50 bg-light-bg/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-5xl">
+      <a href="#hero" class="text-xl font-bold text-brand flex items-center gap-1">
+        <i class='bx bx-code-alt'></i> firoj.
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-sm font-medium hover:text-brand transition-colors">Sobre / About</a>
+        <a href="#skills" class="text-sm font-medium hover:text-brand transition-colors">Skills</a>
+        <a href="#contact" class="text-sm font-medium hover:text-brand transition-colors">Contato / Contact</a>
+
+        <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+          <i class='bx bx-moon text-xl block dark:hidden'></i>
+          <i class='bx bx-sun text-xl hidden dark:block text-brand'></i>
+        </button>
+      </div>
+
+      <div class="md:hidden flex items-center gap-4">
+        <button id="themeToggleMobile" class="p-2">
+          <i class='bx bx-moon text-xl block dark:hidden'></i>
+          <i class='bx bx-sun text-xl hidden dark:block text-brand'></i>
+        </button>
+        <button id="mobileMenuBtn" class="text-2xl hover:text-brand">
+          <i class='bx bx-menu'></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu"
+      class="hidden md:hidden bg-light-bg dark:bg-dark-bg border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex flex-col gap-4">
+      <a href="#about" class="hover:text-brand mobile-link">Sobre / About</a>
+      <a href="#skills" class="hover:text-brand mobile-link">Skills</a>
+      <a href="#contact" class="hover:text-brand mobile-link">Contato / Contact</a>
+    </div>
+  </nav>
+
+  <section id="hero" class="pt-32 pb-20 min-h-screen flex items-center">
+    <div class="container mx-auto px-6 max-w-5xl grid md:grid-cols-2 gap-12 items-center">
+
+      <div class="space-y-6">
+        <p class="text-brand font-semibold text-sm tracking-wider uppercase flex items-center gap-2">
+          Senior Software Engineer <span class="w-8 h-[1px] bg-brand inline-block"></span>
+        </p>
+        <h1 class="text-4xl md:text-5xl font-bold text-light-heading dark:text-dark-heading leading-tight">
+          Hi, I'm Firoj.
+        </h1>
+        <p class="text-lg leading-relaxed">
+          I build robust software systems. With <strong id="totalYrs"
+            class="text-light-heading dark:text-dark-heading"></strong> of experience designing and scaling backend
+          systems — from microservices on Kubernetes to event-driven pipelines with Kafka and RabbitMQ.
+        </p>
+        <div class="pt-4 flex flex-wrap gap-4">
+          <a href="#contact"
+            class="px-6 py-3 border border-brand text-brand rounded hover:bg-brand hover:text-dark-bg transition-colors font-medium text-sm tracking-wider uppercase">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-center md:justify-end">
+        <svg class="w-full max-w-md text-brand opacity-90 drop-shadow-2xl" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+          <path d="M10 9l-2 2 2 2"></path>
+          <path d="M14 9l2 2-2 2"></path>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 relative">
+    <div
+      class="absolute inset-0 opacity-5 pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDB2NDBoNDBWMEgweiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]">
+    </div>
+
+    <div class="container mx-auto px-6 max-w-5xl relative z-10">
+      <div class="flex items-center gap-3 mb-12">
+        <div class="w-3 h-3 border-2 border-brand rounded-sm"></div>
+        <h2 class="text-2xl font-bold text-light-heading dark:text-dark-heading uppercase tracking-widest">Sobre</h2>
+      </div>
+
+      <div class="grid md:grid-cols-[250px_1fr] gap-12 items-start">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-48 h-48 rounded-full border-4 border-brand p-1 mb-6 relative overflow-hidden">
+            <img src="./images/firoj-linkedin-pic.jpg" alt="Firoj" class="w-full h-full object-cover rounded-full"
+              onerror="this.style.display='none';">
+          </div>
+          <h3 class="text-xl font-bold text-light-heading dark:text-dark-heading mb-4">Firoj Mujawar</h3>
+          <div class="flex gap-4">
+            <a href="mailto:firojm57@gmail.com" class="text-2xl hover:text-brand transition-colors"><i
+                class='bx bx-envelope'></i></a>
+            <a href="https://www.github.com/firojm57" target="_blank"
+              class="text-2xl hover:text-brand transition-colors"><i class='bx bxl-github'></i></a>
+            <a href="https://www.linkedin.com/in/firojmujawar" target="_blank"
+              class="text-2xl hover:text-brand transition-colors"><i class='bx bxl-linkedin-square'></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold text-light-heading dark:text-dark-heading mb-6">Get to know a bit about me</h3>
+          <div class="space-y-4 mb-8">
+            <p>I'm a <strong class="text-light-heading dark:text-dark-heading">Senior Software Engineer</strong> with
+              over a decade of experience building scalable backend systems and distributed architectures. I enjoy
+              working at the intersection of engineering rigour and product impact.</p>
+            <p>My core stack is <strong class="text-light-heading dark:text-dark-heading">Java</strong> and <strong
+                class="text-light-heading dark:text-dark-heading">Go</strong> for backend, <strong
+                class="text-light-heading dark:text-dark-heading">Angular</strong> for frontend, and <strong
+                class="text-light-heading dark:text-dark-heading">PostgreSQL</strong> for data — deployed on Kubernetes
+              with event streaming via Kafka.</p>
+            <p>Based in Pune, India. When I'm not shipping code, I'm thinking about entrepreneurship, content creation,
+              and building things that outlast a sprint cycle.</p>
+          </div>
+
+          <div
+            class="bg-light-card dark:bg-dark-card p-6 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
+            <p class="text-brand font-medium flex items-center gap-2"><i class='bx bx-current-location'></i> Open to
+              opportunities / Relocation (Germany)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills"
+    class="py-20 bg-gray-50 dark:bg-dark-bg border-y border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <div class="flex items-center gap-3 mb-12 justify-center md:justify-start">
+        <div class="w-3 h-3 border-2 border-brand rounded-sm"></div>
+        <h2 class="text-2xl font-bold text-light-heading dark:text-dark-heading uppercase tracking-widest">Skills</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center">
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bxl-java text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Java</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bxl-go text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Go</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bxl-angular text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Angular</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bxl-postgresql text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span
+            class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">PostgreSQL</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bx-server text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span
+            class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Kubernetes</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bxl-docker text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Docker</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bx-data text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Kafka /
+            RabbitMQ</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i
+            class='bx bxl-spring-boot text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Spring
+            Boot</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group">
+          <i class='bx bxl-git text-5xl text-gray-400 group-hover:text-brand transition-colors duration-300'></i>
+          <span class="text-sm font-medium border-b-2 border-transparent group-hover:border-brand pb-1">Git /
+            Bitbucket</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <div class="flex items-center gap-3 mb-12 justify-center md:justify-start">
+        <div class="w-3 h-3 border-2 border-brand rounded-sm"></div>
+        <h2 class="text-2xl font-bold text-light-heading dark:text-dark-heading uppercase tracking-widest">Contato</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <p class="text-lg">Feel free to reach out. I read every message and usually reply within 48 hours.</p>
+
+        <div
+          class="bg-light-card dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-lg p-8 shadow-sm space-y-6">
+          <a href="mailto:firojm57@gmail.com" class="flex items-center gap-4 hover:text-brand transition-colors">
+            <i class='bx bx-envelope text-3xl text-brand'></i>
+            <div>
+              <p class="text-sm text-gray-500 uppercase tracking-wider">Email</p>
+              <p class="font-medium text-light-heading dark:text-dark-heading">firojm57@gmail.com</p>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/firojmujawar" target="_blank"
+            class="flex items-center gap-4 hover:text-brand transition-colors">
+            <i class='bx bxl-linkedin text-3xl text-brand'></i>
+            <div>
+              <p class="text-sm text-gray-500 uppercase tracking-wider">LinkedIn</p>
+              <p class="font-medium text-light-heading dark:text-dark-heading">/in/firojmujawar</p>
+            </div>
+          </a>
+          <a href="https://www.github.com/firojm57" target="_blank"
+            class="flex items-center gap-4 hover:text-brand transition-colors">
+            <i class='bx bxl-github text-3xl text-brand'></i>
+            <div>
+              <p class="text-sm text-gray-500 uppercase tracking-wider">GitHub</p>
+              <p class="font-medium text-light-heading dark:text-dark-heading">/firojm57</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 border-t border-gray-200 dark:border-gray-800 text-center text-sm text-gray-500">
+    <div class="container mx-auto px-6 max-w-5xl flex flex-col md:flex-row justify-between items-center gap-4">
+      <p>© <span id="footerYear"></span> <span class="text-brand">Firoj</span>. All rights reserved.</p>
+      <p>Pune, India</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- Experience Calculation ---
+    const CAREER_START = new Date('2015-08-01');
+    const now = new Date();
+
+    function yearsSince(date) {
+      return Math.round((now - date) / (1000 * 60 * 60 * 24 * 365.25));
+    }
+
+    document.getElementById('totalYrs').textContent = yearsSince(CAREER_START) + '+ years';
+    document.getElementById('footerYear').textContent = now.getFullYear();
+
+    // --- Theme Toggle Logic ---
+    const htmlObj = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const themeBtnMobile = document.getElementById('themeToggleMobile');
+
+    // Check local storage or system preference
+    if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlObj.classList.remove('dark');
+    }
+
+    function toggleTheme() {
+      if (htmlObj.classList.contains('dark')) {
+        htmlObj.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlObj.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    themeBtn.addEventListener('click', toggleTheme);
+    themeBtnMobile.addEventListener('click', toggleTheme);
+
+    // --- Mobile Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
 </body>
+
 </html>
